@@ -107,7 +107,7 @@ export async function GET(req: NextRequest) {
           >
             <span style={{ color: '#10b981', fontWeight: 700 }}>دُعَاء</span>
             <span>•</span>
-            <span>doua-app.vercel.app</span>
+            <span>adhkarr.vercel.app</span>
           </div>
         </div>
       ),

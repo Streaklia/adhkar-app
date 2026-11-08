@@ -2,15 +2,15 @@ export const SITE_CONFIG = {
   name: 'دُعَاء | أذكار وتسبيح يومي فائق البساطة',
   shortName: 'دُعَاء',
   description: 'تطبيق إسلامي فائق البساطة وموجه للجوال والحاسوب، يتيح الأذكار اليومية والتسبيح التفاعلي ودليل الصلاة وأدعية السفر مع دعم كامل بدون اتصال بالإنترنت ووضع أسود OLED.',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://doua-app.vercel.app',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://adhkarr.vercel.app',
   locale: 'ar_AR',
   lang: 'ar',
   author: {
     name: 'فريق دُعَاء',
-    url: 'https://doua-app.vercel.app',
+    url: 'https://adhkarr.vercel.app',
   },
   links: {
-    github: 'https://github.com',
+    github: 'https://github.com/Streaklia/adhkar-app',
   },
   pages: [
     {

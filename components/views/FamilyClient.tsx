@@ -27,7 +27,7 @@ export default function FamilyClient() {
   });
 
   const handleShareWhatsApp = (title: string, text: string) => {
-    const formatted = `🌿 *${title}*\n\n${text}\n\n— تطبيق دُعَاء (https://doua-app.vercel.app)`;
+    const formatted = `🌿 *${title}*\n\n${text}\n\n— تطبيق دُعَاء (https://adhkarr.vercel.app)`;
     const encoded = encodeURIComponent(formatted);
     window.open(`https://api.whatsapp.com/send?text=${encoded}`, '_blank');
     if (hapticEnabled) triggerHaptic('light', true);

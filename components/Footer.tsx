@@ -47,9 +47,9 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Col 3: Machine-Readable & Tech SEO links */}
+        {/* Col 3: Machine-Readable links */}
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-zinc-300 text-xs">الروابط الفنية والـ SEO</span>
+          <span className="font-semibold text-zinc-300 text-xs">روابط التغذية والبيانات</span>
           <div className="flex flex-wrap gap-2 text-[10px]">
             <a
               href="/feed.xml"
@@ -66,7 +66,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded-lg border border-zinc-800 transition-all font-mono"
-              title="خريطة الموقع لمحركات البحث"
+              title="خريطة الموقع"
             >
               <span>sitemap.xml</span>
             </a>
@@ -75,7 +75,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 bg-zinc-900 hover:bg-zinc-800 text-zinc-400 hover:text-zinc-200 px-2.5 py-1 rounded-lg border border-zinc-800 transition-all font-mono"
-              title="فهرس أنظمة الذكاء الاصطناعي LLMs"
+              title="فهرس النصوص"
             >
               <FileText className="w-3 h-3 text-cyan-400" />
               <span>llms.txt</span>
@@ -92,7 +92,7 @@ export default function Footer() {
             </a>
           </div>
           <span className="text-[10px] text-zinc-600 mt-1">
-            مهيأ لمحركات البحث Google و Bing وأنظمة الذكاء الاصطناعي LLMs
+            نسخة إسلامية خفيفة بدون إعلانات
           </span>
         </div>
       </div>

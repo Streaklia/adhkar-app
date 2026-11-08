@@ -95,6 +95,12 @@ export const metadata: Metadata = {
     statusBarStyle: 'black-translucent',
     title: 'دُعَاء',
   },
+  verification: {
+    google: 'e0KcFmXhFs4disyf3M0bSCdHpb9Uf1KgyT2I1ANj4K4',
+  },
+  other: {
+    'google-site-verification': 'e0KcFmXhFs4disyf3M0bSCdHpb9Uf1KgyT2I1ANj4K4',
+  },
 };
 
 export const viewport: Viewport = {
@@ -115,6 +121,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className={`${cairo.variable} ${amiri.variable} oled-mode`}>
       <head>
+        <meta name="google-site-verification" content="e0KcFmXhFs4disyf3M0bSCdHpb9Uf1KgyT2I1ANj4K4" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/icon.svg" />
         <link rel="alternate" type="application/rss+xml" title="دُعَاء RSS Feed" href="/feed.xml" />
