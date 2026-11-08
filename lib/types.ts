@@ -107,3 +107,45 @@ export interface DuasDatabase {
   family: FamilyDua[];
   search_tags: SearchTag[];
 }
+
+export interface HadithCitation {
+  text: string;
+  source: string;
+  grade?: string;
+}
+
+export interface ArticleSection {
+  id: string;
+  heading: string;
+  content: string;
+  hadiths?: HadithCitation[];
+}
+
+export interface ArticleFAQ {
+  question: string;
+  answer: string;
+}
+
+export interface ArticleItem {
+  slug: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  datePublished: string;
+  dateModified: string;
+  readingTime: string;
+  description: string;
+  keywords: string[];
+  relatedAppTool?: {
+    title: string;
+    link: string;
+    label: string;
+  };
+  tableOfContents: {
+    id: string;
+    title: string;
+  }[];
+  sections: ArticleSection[];
+  faqs: ArticleFAQ[];
+}
+

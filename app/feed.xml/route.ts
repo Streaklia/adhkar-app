@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { SITE_CONFIG } from '@/lib/site-config';
 import duasData from '@/data/duas.json';
+import articlesData from '@/data/articles.json';
+import { ArticleItem } from '@/lib/types';
 
 function escapeXml(unsafe: string): string {
   return unsafe
@@ -17,7 +19,31 @@ export async function GET() {
 
   const itemsXml: string[] = [];
 
-  // 1. Categories
+  // 1. Articles Directory Item
+  itemsXml.push(`
+    <item>
+      <title>${escapeXml('المقالات والأحاديث النبوية وأحكام الأذكار')}</title>
+      <link>${baseUrl}/articles</link>
+      <guid isPermaLink="true">${baseUrl}/articles</guid>
+      <description>${escapeXml('دليل المقالات والأحاديث الإسلامية المحققة من القرآن وصحيح السنة النبوية.')}</description>
+      <category>المقالات والأحاديث</category>
+      <pubDate>${now}</pubDate>
+    </item>`);
+
+  // 2. Individual SEO Articles
+  (articlesData as ArticleItem[]).forEach((a) => {
+    itemsXml.push(`
+    <item>
+      <title>${escapeXml(a.title)}</title>
+      <link>${baseUrl}/articles/${a.slug}</link>
+      <guid isPermaLink="true">${baseUrl}/articles/${a.slug}</guid>
+      <description>${escapeXml(a.description)}</description>
+      <category>${escapeXml(`مقالات: ${a.category}`)}</category>
+      <pubDate>${new Date(a.datePublished).toUTCString()}</pubDate>
+    </item>`);
+  });
+
+  // 3. Core Pages
   SITE_CONFIG.pages
     .filter((p) => p.slug !== '')
     .forEach((p) => {
@@ -32,7 +58,7 @@ export async function GET() {
     </item>`);
     });
 
-  // 2. After prayer Duas
+  // 4. After prayer Duas
   duasData.after_prayer.forEach((d) => {
     itemsXml.push(`
     <item>
@@ -45,7 +71,7 @@ export async function GET() {
     </item>`);
   });
 
-  // 3. Morning Adhkar
+  // 5. Morning Adhkar
   duasData.adhkar.morning.forEach((d) => {
     itemsXml.push(`
     <item>
@@ -58,7 +84,7 @@ export async function GET() {
     </item>`);
   });
 
-  // 4. Evening Adhkar
+  // 6. Evening Adhkar
   duasData.adhkar.evening.forEach((d) => {
     itemsXml.push(`
     <item>
@@ -71,7 +97,7 @@ export async function GET() {
     </item>`);
   });
 
-  // 5. Travel Duas
+  // 7. Travel Duas
   duasData.travel.forEach((d) => {
     itemsXml.push(`
     <item>
@@ -84,7 +110,7 @@ export async function GET() {
     </item>`);
   });
 
-  // 6. Family Duas
+  // 8. Family Duas
   duasData.family.forEach((d) => {
     itemsXml.push(`
     <item>

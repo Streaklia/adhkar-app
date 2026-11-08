@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { SITE_CONFIG } from '@/lib/site-config';
 import duasData from '@/data/duas.json';
+import articlesData from '@/data/articles.json';
+import { ArticleItem } from '@/lib/types';
 
 export async function GET() {
   const baseUrl = SITE_CONFIG.siteUrl;
@@ -91,7 +93,7 @@ export async function GET() {
 ## سنن الجمعة:
 `;
 
-  duasData.friday.sunnahs.forEach((s, idx) => {
+  duasData.friday.sunnahs.forEach((s) => {
     fullMarkdown += `- **${s.title}:** ${s.desc}\n`;
   });
 
@@ -117,6 +119,36 @@ export async function GET() {
   duasData.family.forEach((f, idx) => {
     fullMarkdown += `### ${idx + 1}. ${f.title} (${f.category_ar})\n`;
     fullMarkdown += `${f.text}\n\n`;
+  });
+
+  fullMarkdown += `---
+
+# 8. مقالات وأحاديث الأذكار والسنن النبوية (${baseUrl}/articles)
+
+`;
+
+  (articlesData as ArticleItem[]).forEach((a, aIdx) => {
+    fullMarkdown += `## 8.${aIdx + 1} ${a.title} (${baseUrl}/articles/${a.slug})\n`;
+    fullMarkdown += `**التصنيف:** ${a.category} | **وقت القراءة:** ${a.readingTime}\n\n`;
+    fullMarkdown += `> ${a.description}\n\n`;
+
+    a.sections.forEach((sec) => {
+      fullMarkdown += `### ${sec.heading}\n\n${sec.content}\n\n`;
+      if (sec.hadiths) {
+        sec.hadiths.forEach((h) => {
+          fullMarkdown += `> «${h.text}»\n> — ${h.source}${h.grade ? ` (${h.grade})` : ''}\n\n`;
+        });
+      }
+    });
+
+    if (a.faqs && a.faqs.length > 0) {
+      fullMarkdown += `#### الأسئلة الشائعة:\n\n`;
+      a.faqs.forEach((faq) => {
+        fullMarkdown += `**س: ${faq.question}**\n${faq.answer}\n\n`;
+      });
+    }
+
+    fullMarkdown += `---\n\n`;
   });
 
   return new NextResponse(fullMarkdown, {

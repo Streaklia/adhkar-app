@@ -48,6 +48,7 @@ export default function Header() {
     { href: '/travel', label: 'أدعية السفر' },
     { href: '/friday', label: 'يوم الجمعة' },
     { href: '/family', label: 'الأهل والوالدين' },
+    { href: '/articles', label: 'المقالات' },
   ];
 
   return (

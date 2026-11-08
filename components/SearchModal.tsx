@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAppSettings } from '@/lib/theme-context';
 import { Search, X, ChevronLeft, Sparkles } from 'lucide-react';
 import duasData from '@/data/duas.json';
+import articlesData from '@/data/articles.json';
 
 interface SearchItem {
   id: string;
@@ -113,6 +114,18 @@ export default function SearchModal() {
         categoryName: 'قصار السور للصلاة',
         href: '/prayer-guide',
         tags: ['صلاة', 'قرآن', 'سورة', s.name],
+      });
+    });
+
+    // 8. Articles & Hadiths
+    (articlesData as { slug: string; title: string; subtitle: string; description: string; category: string; keywords: string[] }[]).forEach((a) => {
+      items.push({
+        id: `article_${a.slug}`,
+        title: a.title,
+        text: a.description,
+        categoryName: `مقال: ${a.category}`,
+        href: `/articles/${a.slug}`,
+        tags: a.keywords || [],
       });
     });
 

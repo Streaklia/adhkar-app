@@ -44,6 +44,9 @@ export default function Footer() {
             <Link href="/family" title="أدعية الوالدين والأسرة" className="hover:text-emerald-400 transition-colors">
               الوالدين والأهل
             </Link>
+            <Link href="/articles" title="المقالات والأحاديث النبوية" className="hover:text-emerald-400 transition-colors text-emerald-400 font-medium">
+              المقالات والأحاديث
+            </Link>
           </div>
         </div>
 

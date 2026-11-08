@@ -1,8 +1,17 @@
 import { NextResponse } from 'next/server';
 import { SITE_CONFIG } from '@/lib/site-config';
+import articlesData from '@/data/articles.json';
+import { ArticleItem } from '@/lib/types';
 
 export async function GET() {
   const baseUrl = SITE_CONFIG.siteUrl;
+  const articles = articlesData as ArticleItem[];
+
+  let articlesMarkdown = `- [دليل المقالات والأحاديث النبوية](${baseUrl}/articles)\n  مكتبة شاملة للمقالات الإسلامية المحققة من صحيح السنة حول أذكار الصباح، الصلاة، الجمعة، السفر، وبر الوالدين.\n\n`;
+
+  articles.forEach((a) => {
+    articlesMarkdown += `  * [${a.title}](${baseUrl}/articles/${a.slug})\n    ${a.description}\n`;
+  });
 
   const content = `# دُعَاء | Doua & Tasbih
 
@@ -36,6 +45,7 @@ export async function GET() {
 - [أدعية الوالدين والأهل](${baseUrl}/family)
   أدعية بر الوالدين أحياء ومتوفين، صلة الرحم، وحفظ الأبناء والعائلة، مع زر إرسال مباشر بلمسة واحدة عبر واتساب.
 
+${articlesMarkdown}
 ## Machine-Readable Resources
 
 - Sitemap: ${baseUrl}/sitemap.xml

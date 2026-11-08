@@ -101,3 +101,72 @@ export function getFAQSchema(faqs: { question: string; answer: string }[]) {
     })),
   };
 }
+
+export function getArticleBreadcrumbSchema(articleSlug: string, articleTitle: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'الرئيسية',
+        item: SITE_CONFIG.siteUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'المقالات والأحاديث',
+        item: `${SITE_CONFIG.siteUrl}/articles`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: articleTitle,
+        item: `${SITE_CONFIG.siteUrl}/articles/${articleSlug}`,
+      },
+    ],
+  };
+}
+
+export function getArticleSchema(article: {
+  slug: string;
+  title: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  category: string;
+  keywords: string[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: article.title,
+    description: article.description,
+    image: `${SITE_CONFIG.siteUrl}/api/og?title=${encodeURIComponent(article.title)}&category=${encodeURIComponent(article.category)}`,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified,
+    inLanguage: 'ar',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${SITE_CONFIG.siteUrl}/articles/${article.slug}`,
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'أذكار - Adhkarr',
+      url: SITE_CONFIG.siteUrl,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'أذكار - Adhkarr',
+      url: SITE_CONFIG.siteUrl,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${SITE_CONFIG.siteUrl}/icon.svg`,
+      },
+    },
+    articleSection: article.category,
+    keywords: article.keywords.join(', '),
+  };
+}
+
