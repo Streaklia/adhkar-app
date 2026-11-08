@@ -1,0 +1,19 @@
+{
+  "name": "دعاء وذكر | Doua & Tasbih",
+  "short_name": "دعاء",
+  "description": "تطبيق إسلامي فائق البساطة للأذكار والتسبيح اليومي يعمل دون اتصال بالإنترنت",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
